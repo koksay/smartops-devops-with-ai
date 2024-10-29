@@ -46,6 +46,9 @@ k8sgpt auth list
 # add local ollama backend
 k8sgpt auth add --backend localai --model llama2 --baseurl http://localhost:11434/v1
 
+# make it default
+k8sgpt auth default -p localai
+
 # Create a problem
 kubectl apply -f - <<EOF
 apiVersion: v1
@@ -143,6 +146,41 @@ spec:
     type: slack
     webhook: ${SLACK_WEBHOOK_URL}
 EOF
+```
+
+## Vulnerability Scanning
+
+You can integrate `trivy`:
+
+```bash
+k8sgpt integration activate trivy
+## ...
+## 2024/10/29 08:51:52 release installed successfully: trivy-operator-k8sgpt/trivy-operator-0.24.1
+## Activated integration trivy
+
+k8sgpt filters list
+
+# Check the report
+k8sgpt analyze --filter VulnerabilityReport
+## AI Provider: AI not used; --explain not set
+##
+## No problems detected
+
+# Deploy a vulnerable application
+kubectl apply -f - <<EOF
+apiVersion: v1
+kind: Pod
+metadata:
+  name: vulnerable-pod
+  namespace: default
+spec:
+  containers:
+  - name: vulnerable-pod
+    image: nginx:1.19.2
+EOF
+
+# Try again
+k8sgpt analyze --filter VulnerabilityReport
 ```
 
 ## ShellGPT
