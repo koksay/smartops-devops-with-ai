@@ -2,6 +2,9 @@
 
 ## Minikube Deploy
 
+> [!TIP]
+> [Minikube](https://minikube.sigs.k8s.io/docs/) quickly sets up a local Kubernetes cluster on macOS, Linux, and Windows.
+
 Let's run the Ollama Models locally running Kubernetes Cluster:
 
 ```bash
@@ -14,6 +17,9 @@ minikube mount $PWD/models:/models
 ```
 
 ## Ollama on Kubernetes
+
+> [!TIP]
+> [Ollama](https://ollama.com/) is an open-source project that serves as a powerful and user-friendly platform for running LLMs on your local machine.
 
 Deploy Ollama on Minikube cluster:
 
@@ -36,6 +42,9 @@ ollama list
 ```
 
 ## K8sgpt CLI
+
+> [!TIP]
+> [K8sGPT](https://k8sgpt.ai/) is a tool for scanning your Kubernetes clusters, and diagnosing and triaging issues in simple English. It's a CNCF Sandbox Project.
 
 Install k8sgpt via brew, or via any other installation method.
 
@@ -184,6 +193,9 @@ k8sgpt analyze --filter VulnerabilityReport
 ```
 
 ## ShellGPT
+
+> [!TIP]
+> [ShellGPT](https://github.com/TheR1D/shell_gpt) is a command-line productivity tool powered by AI large language models (LLM).
 
 ```bash
 sed -i 's/\(DEFAULT_MODEL=\).*/\1mistral:7b-instruct/' ~/.config/shell_gpt/.sgptrc
